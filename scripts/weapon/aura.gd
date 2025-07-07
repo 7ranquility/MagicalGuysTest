@@ -26,8 +26,11 @@ func damage_enemies_in_aura():
 			enemy.take_damage(damage)
 
 func _on_area_entered(area):
+	print("Aura: Area entered - ", area.name, " Parent: ", area.get_parent().name if area.get_parent() else "None")
+	
 	# Check if this is the player's hurtbox
 	if area.name == "HurtBox" or (area.get_parent() and area.get_parent().is_in_group("player")):
+		print("Aura: WARNING - Player hurtbox detected! This should not happen.")
 		return
 	
 	# Check if the area belongs to an enemy
@@ -47,8 +50,11 @@ func _on_area_exited(area):
 		enemies_in_aura.erase(area)
 
 func _on_body_entered(body):
+	print("Aura: Body entered - ", body.name)
+	
 	# Check if this is the player
 	if body.is_in_group("player"):
+		print("Aura: WARNING - Player body detected! This should not happen.")
 		return
 	
 	# Check if the body is an enemy
