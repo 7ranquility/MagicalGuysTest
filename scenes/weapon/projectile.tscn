@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d350vm8jb8rfb"]
 
-[ext_resource type="Script" uid="uid://db1tceapl3rcd" path="res://projectile.gd" id="1_qxf0c"]
-[ext_resource type="Texture2D" uid="uid://cdv336u0icu2q" path="res://tile_0113.png" id="2_dgwo2"]
+[ext_resource type="Script" uid="uid://db1tceapl3rcd" path="res://scripts/weapon/projectile.gd" id="1_qxf0c"]
+[ext_resource type="Texture2D" path="res://tile_0113.png" id="2_dgwo2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf0c"]
 radius = 6.0

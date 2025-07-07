@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdv336u0icu2q"
-path="res://.godot/imported/tile_0113.png-84960d1571048f0c63b7cd295c13f793.ctex"
+uid="uid://ck7ts6ow6j8cr"
+path="res://.godot/imported/noteguy003.png-d84b3e80f076c4e907f8c5aa6f117494.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile_0113.png"
-dest_files=["res://.godot/imported/tile_0113.png-84960d1571048f0c63b7cd295c13f793.ctex"]
+source_file="res://assets/enemy/Noteguy/noteguy003.png"
+dest_files=["res://.godot/imported/noteguy003.png-d84b3e80f076c4e907f8c5aa6f117494.ctex"]
 
 [params]
 

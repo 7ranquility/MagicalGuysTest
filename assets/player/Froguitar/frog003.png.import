@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j6avtl7nb0g"
-path="res://.godot/imported/noteguy000.png-ace5cfba8b69de0119947ef7e55c92e9.ctex"
+uid="uid://bbhq1ololc48x"
+path="res://.godot/imported/frog003.png-7ae8783c6e6856572a4f07b7e0a7438c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://noteguy000.png"
-dest_files=["res://.godot/imported/noteguy000.png-ace5cfba8b69de0119947ef7e55c92e9.ctex"]
+source_file="res://assets/player/Froguitar/frog003.png"
+dest_files=["res://.godot/imported/frog003.png-7ae8783c6e6856572a4f07b7e0a7438c.ctex"]
 
 [params]
 

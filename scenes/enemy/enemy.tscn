@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://clux3klygbqmw"]
 
-[ext_resource type="Script" uid="uid://cyvu1i55ua614" path="res://enemy.gd" id="1_7k104"]
-[ext_resource type="Texture2D" uid="uid://j6avtl7nb0g" path="res://noteguy000.png" id="2_epg4t"]
-[ext_resource type="Texture2D" uid="uid://dxrsvcikqbmmm" path="res://noteguy001.png" id="3_3yqyl"]
-[ext_resource type="Texture2D" uid="uid://ddxa1ens7s0hs" path="res://noteguy002.png" id="4_wujgv"]
-[ext_resource type="Texture2D" uid="uid://ck7ts6ow6j8cr" path="res://noteguy003.png" id="5_hb8ge"]
+[ext_resource type="Script" uid="uid://cyvu1i55ua614" path="res://scripts/enemy/enemy.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://j6avtl7nb0g" path="res://assets/enemy/Noteguy/noteguy000.png" id="2_epg4t"]
+[ext_resource type="Texture2D" uid="uid://dxrsvcikqbmmm" path="res://assets/enemy/Noteguy/noteguy001.png" id="3_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://ddxa1ens7s0hs" path="res://assets/enemy/Noteguy/noteguy002.png" id="4_wujgv"]
+[ext_resource type="Texture2D" uid="uid://ck7ts6ow6j8cr" path="res://assets/enemy/Noteguy/noteguy003.png" id="5_hb8ge"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
 animations = [{

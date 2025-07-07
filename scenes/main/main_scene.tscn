@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://x3wuaibe1kfe"]
+
+[ext_resource type="PackedScene" uid="uid://ct8a7w65uq014" path="res://scenes/enemy/enemy_spawner.tscn" id="1_ubvhi"]
+[ext_resource type="PackedScene" uid="uid://clux3klygbqmw" path="res://scenes/enemy/enemy.tscn" id="2_24sno"]
+[ext_resource type="PackedScene" uid="uid://cvvure83jd3oi" path="res://scenes/player/player.tscn" id="3_s7l2u"]
+
+[sub_resource type="GDScript" id="GDScript_o3jxj"]
+script/source = "extends Node2D
+"
+
+[node name="MainScene" type="Node2D"]
+script = SubResource("GDScript_o3jxj")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_ubvhi")]
+enemy_scene = ExtResource("2_24sno")
+spawn_distance = 300.0
+
+[node name="Player" parent="." instance=ExtResource("3_s7l2u")]
