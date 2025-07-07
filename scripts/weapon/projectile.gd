@@ -15,7 +15,7 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemies"):
 		area.get_parent().take_damage(damage)
-		
+	$ProjectileSprite.play("default")
 
 var direction = Vector2.RIGHT
 const proj_speed = 750
