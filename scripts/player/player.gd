@@ -18,6 +18,8 @@ var shoot_cooldown := 0.0
 var current_health: int
 var is_invincible: bool = false
 var invincibility_timer: float = 0.0
+var mouse_position: Vector2
+var is_manual_aiming: bool = false
 
 func _ready():
 	current_health = max_health
@@ -43,7 +45,18 @@ func setup_hurtbox():
 		hurtbox.body_entered.connect(_on_hurt_box_body_entered)
 		hurtbox.area_entered.connect(_on_hurt_box_area_entered)
 
-
+func _input(event):
+	# Update mouse position
+	if event is InputEventMouseMotion:
+		mouse_position = get_global_mouse_position()
+	
+	# Check for manual shooting
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				is_manual_aiming = true
+			else:
+				is_manual_aiming = false
 
 func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -56,12 +69,29 @@ func _process(delta):
 	handle_invincibility(delta)
 
 func handle_shooting(delta):
-	var closest_enemy = find_closest_enemy()
-	if closest_enemy and shoot_cooldown <= 0:
-		shoot(closest_enemy)
+	# Manual shooting with mouse
+	if is_manual_aiming and shoot_cooldown <= 0:
+		shoot_at_mouse()
 		shoot_cooldown = fire_rate
+	# Auto-aim shooting (fallback)
+	elif not is_manual_aiming:
+		var closest_enemy = find_closest_enemy()
+		if closest_enemy and shoot_cooldown <= 0:
+			shoot(closest_enemy)
+			shoot_cooldown = fire_rate
+	
 	if shoot_cooldown > 0:
 		shoot_cooldown -= delta
+
+func shoot_at_mouse():
+	var projectile = ProjectileScene.instantiate()
+	owner.add_child(projectile)
+	projectile.global_position = $Muzzle.global_position
+	
+	# Calculate direction to mouse
+	var direction = (mouse_position - $Muzzle.global_position).normalized()
+	projectile.rotation = direction.angle()
+	projectile.direction = direction
 
 func handle_invincibility(delta):
 	if is_invincible:
@@ -105,10 +135,8 @@ func _on_hurt_box_area_entered(area: Area2D):
 
 func take_damage(amount: int):
 	if is_invincible:
-		print("Player: Damage blocked by invincibility")
 		return
 	
-	print("Player: Taking ", amount, " damage! Health: ", current_health, " -> ", current_health - amount)
 	current_health -= amount
 	current_health = max(current_health, 0)
 	
