@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl15adr7qv61w"]
+
+[ext_resource type="Texture2D" uid="uid://brjx31q8472dv" path="res://assets/world/coin.webp" id="1_apoa5"]
+[ext_resource type="Script" uid="uid://cibe1qvgjdopc" path="res://scenes/player/xp_pickup.gd" id="1_ivfax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivfax"]
+radius = 5.0
+
+[node name="XPPickup" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_ivfax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(5.96046e-08, 5.96046e-08)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_apoa5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ivfax")

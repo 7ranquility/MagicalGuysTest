@@ -9024,6 +9024,7 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 10
 script = ExtResource("1_onrkg")
+SPEED = 100.0
 ProjectileScene = ExtResource("2_hqtel")
 detection_range = 150.0
 
@@ -9032,14 +9033,17 @@ texture_filter = 1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_u1c27")
 animation = &"walk"
-frame_progress = 0.064327
+frame_progress = 0.146049
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="Muzzle" type="Marker2D" parent="."]
 
@@ -9053,7 +9057,7 @@ theme = SubResource("Theme_i3pqv")
 show_percentage = false
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(1, -2)

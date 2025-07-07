@@ -3,8 +3,10 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var max_health: int = 100
 @export var damage = 10
+@export var xp_drop_amount: int = 15
 @onready var player = null
 @onready var hurtbox: Area2D = $Area2D
+@onready var xp_pickup_scene = preload("res://scenes/player/xp_pickup.tscn")
 
 var current_health: int
 
@@ -62,4 +64,12 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	queue_free()  # Remove the enemy from the scene
+	drop_xp()
+	queue_free()
+
+func drop_xp() -> void:
+	if xp_pickup_scene:
+		var xp_pickup = xp_pickup_scene.instantiate()
+		xp_pickup.global_position = global_position
+		xp_pickup.xp_value = xp_drop_amount
+		get_parent().add_child(xp_pickup)

@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
+@export var SPEED: float = 200.0
 @export var ProjectileScene: PackedScene
 @export var shoot_action: String = "shoot"
 @export var fire_rate := 0.5
 @export var detection_range: float = 300.0
 @export var max_health: int = 100
-@export var invincibility_duration: float = 1.0  # Seconds of invincibility after taking damage
+@export var invincibility_duration: float = 1.0
+@export var current_xp: int = 0
+@export var xp_to_next_level: int = 100
 
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var hurtbox: Area2D = $HurtBox
@@ -125,3 +127,16 @@ func die():
 	# Add death logic here (game over screen, restart, etc.)
 	# For now, just restart the scene
 	get_tree().reload_current_scene()
+
+func gain_xp(amount: int):
+	current_xp += amount
+	print("Gained ", amount, " XP! Total: ", current_xp)
+	
+	# Check for level up
+	if current_xp >= xp_to_next_level:
+		level_up()
+
+func level_up():
+	current_xp -= xp_to_next_level
+	xp_to_next_level = int(xp_to_next_level * 1.5)  # Increase XP requirement
+	print("Level up!")

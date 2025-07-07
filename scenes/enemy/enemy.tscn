@@ -34,13 +34,14 @@ height = 32.0
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_7k104")
+speed = 40.0
 max_health = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemies"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_e1ltt")
 animation = &"walk"
-frame_progress = 0.521397
+frame_progress = 0.857592
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 2
