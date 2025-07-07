@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://x3wuaibe1kfe"]
+[gd_scene load_steps=5 format=3 uid="uid://x3wuaibe1kfe"]
 
+[ext_resource type="PackedScene" uid="uid://ct8a7w65uq014" path="res://enemy_spawner.tscn" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://clux3klygbqmw" path="res://enemy.tscn" id="2_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://cvvure83jd3oi" path="res://player.tscn" id="3_gyfs4"]
 
@@ -10,7 +11,8 @@ script/source = "extends Node2D
 [node name="MainScene" type="Node2D"]
 script = SubResource("GDScript_o3jxj")
 
-[node name="Enemy" parent="." instance=ExtResource("2_d5x1h")]
-position = Vector2(-144, -88)
+[node name="EnemySpawner" parent="." instance=ExtResource("1_2c62f")]
+enemy_scene = ExtResource("2_d5x1h")
+spawn_distance = 300.0
 
 [node name="Player" parent="." instance=ExtResource("3_gyfs4")]

@@ -1,10 +1,15 @@
-# Enemy.gd
 extends CharacterBody2D
 
 @export var speed: float = 100.0
+@export var max_health: int = 100
 @onready var player = null
+@onready var hurtbox: Area2D = $Area2D
+
+var current_health: int
 
 func _ready():
+	current_health = max_health
+	hurtbox.body_entered.connect(_on_body_entered)
 	# Try to find the player automatically
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -12,8 +17,41 @@ func _ready():
 	else:
 		print("Player not found in group!")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if player:
 		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
+		var separation = get_separation_force()
+		var final_direction = (direction + separation).normalized()
+		
+		velocity = final_direction * speed
 		move_and_slide()
+
+
+func get_separation_force() -> Vector2:
+	var separation = Vector2.ZERO
+	var separation_distance = 20.0  # How close is too close
+	
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy != self:
+			var distance = global_position.distance_to(enemy.global_position)
+			if distance < separation_distance and distance > 0:
+				var away_direction = (global_position - enemy.global_position).normalized()
+				var force = (separation_distance - distance) / separation_distance
+				separation += away_direction * force
+	
+	return separation * 0.8  # Separation strength (0.0 to 1.0)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("projectiles"):
+		take_damage(body.damage)
+
+
+func take_damage(amount: int) -> void:
+	current_health -= amount
+	current_health = max(current_health, 0)
+	if current_health == 0:
+		die()
+
+func die() -> void:
+	queue_free()  # Remove the enemy from the scene

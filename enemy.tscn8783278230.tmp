@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://clux3klygbqmw"]
+
+[ext_resource type="Script" uid="uid://cyvu1i55ua614" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://c6o7e0a6b2r1" path="res://tile_0120.png" id="2_4gyqm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
+radius = 5.0
+height = 10.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 11
+script = ExtResource("1_7k104")
+max_health = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemies"]]
+texture_filter = 1
+texture = ExtResource("2_4gyqm")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemies"]]
+shape = SubResource("CapsuleShape2D_4gyqm")
