@@ -9,9 +9,19 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_area_entered(area):
-	if area.get_parent().is_in_group("enemies"):
+	print("Aura: Area entered - ", area.name, " Parent: ", area.get_parent().name if area.get_parent() else "None")
+	# Check if the area belongs to an enemy
+	if area.get_parent() and area.get_parent().is_in_group("enemies"):
+		print("Aura: Damaging enemy via area - ", area.get_parent().name)
 		area.get_parent().take_damage(damage)
+	# Also check if the area itself is an enemy
+	elif area.is_in_group("enemies"):
+		print("Aura: Damaging enemy directly - ", area.name)
+		area.take_damage(damage)
 
 func _on_body_entered(body):
+	print("Aura: Body entered - ", body.name)
+	# Check if the body is an enemy
 	if body.is_in_group("enemies"):
+		print("Aura: Damaging enemy via body - ", body.name)
 		body.take_damage(damage)

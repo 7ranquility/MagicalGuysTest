@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_uufpx"]
 radius = 230.0
 
-[node name="Aura" type="Area2D" groups=["projectile"]]
+[node name="Aura" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_gav06")
