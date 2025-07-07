@@ -58,12 +58,9 @@ func _on_body_entered(body: Node) -> void:
 
 
 func take_damage(amount: int) -> void:
-	print("Enemy ", name, " taking ", amount, " damage. Current health: ", current_health, " -> ", current_health - amount)
 	current_health -= amount
 	current_health = max(current_health, 0)
-	print("Enemy ", name, " health after damage: ", current_health)
 	if current_health == 0:
-		print("Enemy ", name, " dying!")
 		die()
 
 func die() -> void:
