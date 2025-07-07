@@ -105,8 +105,10 @@ func _on_hurt_box_area_entered(area: Area2D):
 
 func take_damage(amount: int):
 	if is_invincible:
+		print("Player: Damage blocked by invincibility")
 		return
 	
+	print("Player: Taking ", amount, " damage! Health: ", current_health, " -> ", current_health - amount)
 	current_health -= amount
 	current_health = max(current_health, 0)
 	

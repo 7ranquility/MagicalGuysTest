@@ -34,8 +34,9 @@ func _physics_process(_delta):
 
 func _on_area_entered(area: Area2D):
 	if area.get_parent().is_in_group("player"):
+		print("Enemy ", name, " damaging player via area collision!")
 		if area.get_parent().has_method("take_damage"):
-			area.get_parent().take_damage(damage) 
+			area.get_parent().take_damage(damage)
 
 func get_separation_force() -> Vector2:
 	var separation = Vector2.ZERO
