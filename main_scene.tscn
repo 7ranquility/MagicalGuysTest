@@ -11,5 +11,6 @@ script/source = "extends Node2D
 script = SubResource("GDScript_o3jxj")
 
 [node name="Enemy" parent="." instance=ExtResource("2_d5x1h")]
+position = Vector2(-144, -88)
 
 [node name="Player" parent="." instance=ExtResource("3_gyfs4")]
