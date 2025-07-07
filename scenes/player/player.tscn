@@ -9046,6 +9046,8 @@ process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
+[node name="Aura" parent="Camera2D" instance=ExtResource("10_h17s1")]
+
 [node name="Muzzle" type="Marker2D" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -9072,5 +9074,3 @@ offset_right = 207.0
 offset_bottom = 158.0
 theme = SubResource("Theme_i3pqv")
 show_percentage = false
-
-[node name="Aura" parent="." instance=ExtResource("10_h17s1")]

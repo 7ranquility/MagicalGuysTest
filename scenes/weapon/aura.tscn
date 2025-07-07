@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0rf8vqlwn24b" path="res://pngtree-circular-light-effect-png-image_10152309.png" id="2_vjrgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uufpx"]
-radius = 230.0
+radius = 147.085
 
 [node name="Aura" type="Area2D"]
 collision_layer = 4
@@ -15,5 +15,6 @@ script = ExtResource("1_gav06")
 shape = SubResource("CircleShape2D_uufpx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.44167, 1.44167)
+position = Vector2(0, -1)
+scale = Vector2(0.928473, 0.928473)
 texture = ExtResource("2_vjrgi")
