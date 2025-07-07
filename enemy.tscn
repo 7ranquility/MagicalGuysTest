@@ -1,11 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://clux3klygbqmw"]
+[gd_scene load_steps=8 format=3 uid="uid://clux3klygbqmw"]
 
 [ext_resource type="Script" uid="uid://cyvu1i55ua614" path="res://enemy.gd" id="1_7k104"]
-[ext_resource type="Texture2D" uid="uid://c6o7e0a6b2r1" path="res://tile_0120.png" id="2_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://j6avtl7nb0g" path="res://noteguy000.png" id="2_epg4t"]
+[ext_resource type="Texture2D" uid="uid://dxrsvcikqbmmm" path="res://noteguy001.png" id="3_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://ddxa1ens7s0hs" path="res://noteguy002.png" id="4_wujgv"]
+[ext_resource type="Texture2D" uid="uid://ck7ts6ow6j8cr" path="res://noteguy003.png" id="5_hb8ge"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_epg4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3yqyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wujgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hb8ge")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
-radius = 5.0
-height = 10.0
+radius = 14.0
+height = 32.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
@@ -13,9 +36,11 @@ collision_mask = 11
 script = ExtResource("1_7k104")
 max_health = 20
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemies"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemies"]]
 texture_filter = 1
-texture = ExtResource("2_4gyqm")
+sprite_frames = SubResource("SpriteFrames_e1ltt")
+animation = &"walk"
+frame_progress = 0.78187
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 2

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 @export var max_health: int = 100
+@export var damage = 10
 @onready var player = null
 @onready var hurtbox: Area2D = $Area2D
 
@@ -16,16 +17,23 @@ func _ready():
 		player = players[0]
 	else:
 		print("Player not found in group!")
+		
+##	hurtbox.body_entered.connect(_on_body_entered)
+	hurtbox.area_entered.connect(_on_area_entered)
 
 func _physics_process(_delta):
 	if player:
 		var direction = (player.global_position - global_position).normalized()
 		var separation = get_separation_force()
 		var final_direction = (direction + separation).normalized()
-		
+		$AnimatedSprite2D.play("walk")
 		velocity = final_direction * speed
 		move_and_slide()
 
+func _on_area_entered(area: Area2D):
+	if area.get_parent().is_in_group("player"):
+		if area.get_parent().has_method("take_damage"):
+			area.get_parent().take_damage(damage) 
 
 func get_separation_force() -> Vector2:
 	var separation = Vector2.ZERO
