@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvvure83jd3oi"]
+
+[ext_resource type="Script" uid="uid://nsyye860lcug" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://d350vm8jb8rfb" path="res://projectile.tscn" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://c5nck0dej14fj" path="res://tile_0112.png" id="2_i3pqv"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_onrkg")
+ProjectileScene = ExtResource("2_hqtel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Muzzle" type="Marker2D" parent="."]
