@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bex25takilsaf"]
+
+[ext_resource type="Script" uid="uid://kd83jvb8703p" path="res://scripts/weapon/aura.gd" id="1_gav06"]
+[ext_resource type="Texture2D" uid="uid://0rf8vqlwn24b" path="res://pngtree-circular-light-effect-png-image_10152309.png" id="2_vjrgi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uufpx"]
+radius = 230.0
+
+[node name="Aura" type="Area2D" groups=["projectile"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_gav06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uufpx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.44167, 1.44167)
+texture = ExtResource("2_vjrgi")

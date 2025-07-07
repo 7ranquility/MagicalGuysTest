@@ -9,8 +9,8 @@ extends CharacterBody2D
 @export var invincibility_duration: float = 1.0
 @export var current_xp: int = 0
 @export var xp_to_next_level: int = 100
-
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var xp_bar: ProgressBar = $XPBar
 @onready var hurtbox: Area2D = $HurtBox
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -22,6 +22,7 @@ var invincibility_timer: float = 0.0
 func _ready():
 	current_health = max_health
 	setup_health_bar()
+	setup_xp_bar()
 	setup_hurtbox()
 	add_to_group("player")
 
@@ -30,6 +31,12 @@ func setup_health_bar():
 		health_bar.max_value = max_health
 		health_bar.value = current_health
 		health_bar.visible = true
+
+func setup_xp_bar():
+	if xp_bar:
+		xp_bar.max_value = xp_to_next_level
+		xp_bar.value = current_xp
+		xp_bar.visible = true
 
 func setup_hurtbox():
 	if hurtbox:
@@ -118,6 +125,11 @@ func update_health_bar():
 	if health_bar:
 		health_bar.value = current_health
 
+func update_xp_bar():
+	if xp_bar:
+		xp_bar.value = current_xp
+		xp_bar.max_value = xp_to_next_level
+
 func heal(amount: int):
 	current_health = min(current_health + amount, max_health)
 	update_health_bar()
@@ -132,6 +144,7 @@ func gain_xp(amount: int):
 	current_xp += amount
 	print("Gained ", amount, " XP! Total: ", current_xp)
 	
+	update_xp_bar()
 	# Check for level up
 	if current_xp >= xp_to_next_level:
 		level_up()
@@ -139,4 +152,5 @@ func gain_xp(amount: int):
 func level_up():
 	current_xp -= xp_to_next_level
 	xp_to_next_level = int(xp_to_next_level * 1.5)  # Increase XP requirement
+	update_xp_bar()
 	print("Level up!")

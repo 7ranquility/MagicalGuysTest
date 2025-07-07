@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cvvure83jd3oi"]
+[gd_scene load_steps=34 format=4 uid="uid://cvvure83jd3oi"]
 
 [ext_resource type="Script" uid="uid://nsyye860lcug" path="res://scripts/player/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://d350vm8jb8rfb" path="res://scenes/weapon/projectile.tscn" id="2_hqtel"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d0iw4bipq5xao" path="res://assets/player/Froguitar/frog004.png" id="7_urp6f"]
 [ext_resource type="Texture2D" uid="uid://cgy8jtw860ylf" path="res://assets/player/Froguitar/frog005.png" id="8_bwjto"]
 [ext_resource type="Texture2D" uid="uid://gcol3anfyjpn" path="res://assets/player/Froguitar/frog006.png" id="9_606se"]
+[ext_resource type="PackedScene" uid="uid://bex25takilsaf" path="res://scenes/weapon/aura.tscn" id="10_h17s1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u1c27"]
 animations = [{
@@ -9033,7 +9034,7 @@ texture_filter = 1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_u1c27")
 animation = &"walk"
-frame_progress = 0.417864
+frame_progress = 0.937754
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -1.5)
@@ -9062,3 +9063,14 @@ collision_mask = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(1, -2)
 shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="XPBar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -207.0
+offset_top = 154.0
+offset_right = 207.0
+offset_bottom = 158.0
+theme = SubResource("Theme_i3pqv")
+show_percentage = false
+
+[node name="Aura" parent="." instance=ExtResource("10_h17s1")]

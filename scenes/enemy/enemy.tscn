@@ -41,7 +41,7 @@ max_health = 20
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_e1ltt")
 animation = &"walk"
-frame_progress = 0.857592
+frame_progress = 0.860289
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 2
