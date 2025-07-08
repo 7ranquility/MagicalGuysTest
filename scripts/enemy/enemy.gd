@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 var current_health: int
 
+
 func _ready():
 	current_health = max_health
 	hurtbox.body_entered.connect(_on_body_entered)
@@ -19,9 +20,10 @@ func _ready():
 		player = players[0]
 	else:
 		print("Player not found in group!")
-		
+
 ##	hurtbox.body_entered.connect(_on_body_entered)
 	hurtbox.area_entered.connect(_on_area_entered)
+
 
 func _physics_process(_delta):
 	if player:
@@ -32,16 +34,18 @@ func _physics_process(_delta):
 		velocity = final_direction * speed
 		move_and_slide()
 
+
 func _on_area_entered(area: Area2D):
 	if area.get_parent().is_in_group("player"):
 		print("Enemy ", name, " damaging player via area collision!")
 		if area.get_parent().has_method("take_damage"):
 			area.get_parent().take_damage(damage)
 
+
 func get_separation_force() -> Vector2:
 	var separation = Vector2.ZERO
 	var separation_distance = 20.0  # How close is too close
-	
+
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy != self:
 			var distance = global_position.distance_to(enemy.global_position)
@@ -49,7 +53,7 @@ func get_separation_force() -> Vector2:
 				var away_direction = (global_position - enemy.global_position).normalized()
 				var force = (separation_distance - distance) / separation_distance
 				separation += away_direction * force
-	
+
 	return separation * 0.8  # Separation strength (0.0 to 1.0)
 
 
@@ -64,9 +68,11 @@ func take_damage(amount: int) -> void:
 	if current_health == 0:
 		die()
 
+
 func die() -> void:
 	drop_xp()
 	queue_free()
+
 
 func drop_xp() -> void:
 	if xp_pickup_scene:
