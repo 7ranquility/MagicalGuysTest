@@ -15,6 +15,10 @@ run/main_scene="uid://x3wuaibe1kfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UpgradeRegistry="*res://scripts/main/upgrade_registry.gd"
+
 [display]
 
 window/size/viewport_width=1920

@@ -16,15 +16,22 @@ const SEPARATION_STRENGTH: float = 0.8
 @onready var hurtbox: Area2D = $Area2D
 @onready var xp_pickup_scene: PackedScene = preload("res://scenes/player/xp_pickup.tscn")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+var blink_timer: Timer = null
 
 # -- Member Variables --
 var current_health: int = 0
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	"""Initializes the enemy, sets up hurtbox, finds player, and prepares for gameplay."""
 	current_health = max_health
 	_setup_hurtbox()
 	_find_player()
+	blink_timer = Timer.new()
+	blink_timer.wait_time = 0.12
+	blink_timer.one_shot = true
+	blink_timer.connect("timeout", Callable(self, "_on_blink_timeout"))
+	add_child(blink_timer)
 
 func _exit_tree() -> void:
 	"""Resource cleanup and signal disconnection."""
@@ -48,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		var final_direction: Vector2 = (direction + separation).normalized()
 		animated_sprite.play("walk")
 		velocity = final_direction * speed
+		velocity += knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 100 * delta)
 		move_and_slide()
 
 func _on_area_entered(area: Area2D) -> void:
@@ -75,6 +84,10 @@ func _on_body_entered(body: Node) -> void:
 func take_damage(amount: int) -> void:
 	current_health -= amount
 	current_health = max(current_health, 0)
+	if animated_sprite:
+		animated_sprite.modulate = Color(1, 0.2, 0.2)
+		if blink_timer:
+			blink_timer.start()
 	if current_health == 0:
 		die()
 
@@ -88,3 +101,7 @@ func drop_xp() -> void:
 		xp_pickup.global_position = global_position
 		xp_pickup.xp_value = xp_drop_amount
 		get_parent().call_deferred("add_child", xp_pickup)
+
+func _on_blink_timeout() -> void:
+	if animated_sprite:
+		animated_sprite.modulate = Color(1, 1, 1)

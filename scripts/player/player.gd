@@ -41,6 +41,18 @@ var projectile_damage: int = DEFAULT_PROJECTILE_DAMAGE
 var game_active: bool = false
 var aura: Node = null
 var _last_aura_scene: PackedScene = null
+# -- Projectile Upgrade Variables --
+var projectile_pierce_count: int = 0
+var has_projectile_explosive: bool = false
+var projectile_split_on_hit: bool = false
+# -- Dash Variables --
+var dash_speed: float = 400.0
+var dash_duration: float = 0.12
+var dash_cooldown: float = 1.0
+var dash_timer: float = 0.0
+var dash_cooldown_timer: float = 0.0
+var is_dashing: bool = false
+var dash_direction: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -91,14 +103,32 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			is_manual_aiming = event.pressed
+	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
+		if not is_dashing and dash_cooldown_timer <= 0.0:
+			var move_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+			if move_dir.length() > 0.1:
+				dash_direction = move_dir.normalized()
+			else:
+				dash_direction = Vector2.RIGHT.rotated(rotation)
+			is_dashing = true
+			dash_timer = dash_duration
+			dash_cooldown_timer = dash_cooldown
 
 
 func _physics_process(delta: float) -> void:
 	if not game_active:
 		return
-	var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	animated_sprite.play("walk")
-	velocity = direction * speed
+	if is_dashing:
+		velocity = dash_direction * dash_speed
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+	else:
+		var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		animated_sprite.play("walk")
+		velocity = direction * speed
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta
 	move_and_slide()
 
 
@@ -143,6 +173,10 @@ func shoot_at_mouse() -> void:
 	var direction: Vector2 = (mouse_position - muzzle.global_position).normalized()
 	projectile.rotation = direction.angle()
 	projectile.direction = direction
+	# Apply upgrades
+	projectile.pierce_count = projectile_pierce_count
+	projectile.split_on_hit = projectile_split_on_hit
+	projectile.explosive = has_projectile_explosive
 
 
 func handle_invincibility(delta: float) -> void:
@@ -177,17 +211,21 @@ func shoot(target: Node2D) -> void:
 		var dir: Vector2 = (muzzle.global_position.direction_to(closest_enemy.global_position)).normalized()
 		b.rotation = dir.angle()
 		b.direction = dir
+		# Apply upgrades
+		b.pierce_count = projectile_pierce_count
+		b.split_on_hit = projectile_split_on_hit
+		b.explosive = has_projectile_explosive
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	print("HurtBox body entered by: ", body, " at position: ", body.global_position)
-	if body.is_in_group("enemies") and not is_invincible:
+	if body.is_in_group("enemies"):
 		take_damage(10)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print("HurtBox area entered by: ", area, " (parent: ", area.get_parent(), ") at position: ", area.global_position)
-	if area.get_parent().is_in_group("enemies") and not is_invincible:
+	if area.get_parent().is_in_group("enemies"):
 		take_damage(10)
 
 
@@ -248,29 +286,23 @@ func level_up() -> void:
 	print("Level up!")
 	pending_level_up = true
 	pending_upgrades = []
+	var owned_groups = []
 	if aura:
-		pending_upgrades.append({id = "aura_damage", name = "Aura Damage", description = "+5 Aura Damage", group = "Aura"})
-		pending_upgrades.append({id = "aura_radius", name = "Aura Radius", description = "+5 Aura Radius", group = "Aura"})
+		owned_groups.append("Aura")
 	if projectile_scene:
-		pending_upgrades.append({id = "proj_damage", name = "Projectile Damage", description = "+10 Projectile Damage", group = "Projectile"})
-		pending_upgrades.append({id = "proj_firerate", name = "Projectile Fire Rate", description = "Faster Fire Rate", group = "Projectile"})
+		owned_groups.append("Projectile")
+	pending_upgrades = UpgradeRegistry.get_upgrades_for_groups(owned_groups)
 	var menu: Node = get_level_up_menu()
 	if menu:
-		menu.show_menu(pending_upgrades, ["Aura", "Projectile"])
+		menu.show_menu(pending_upgrades, owned_groups)
 
 
 func _on_upgrade_chosen(upgrade_id: String) -> void:
 	print("Upgrade chosen: ", upgrade_id)
-	if upgrade_id == "aura_damage" and aura:
-		aura.damage += 5
-	elif upgrade_id == "aura_radius" and aura:
-		print("Before: aura.aura_radius=", aura.aura_radius)
-		aura.set_aura_radius(aura.aura_radius + 5)
-		print("After: aura.aura_radius=", aura.aura_radius)
-	elif upgrade_id == "proj_damage":
-		projectile_damage += 10
-	elif upgrade_id == "proj_firerate":
-		fire_rate = max(0.1, fire_rate * 0.8)
+	for upg in pending_upgrades:
+		if upg.id == upgrade_id:
+			upg.apply.call(self)
+			break
 	pending_level_up = false
 
 
