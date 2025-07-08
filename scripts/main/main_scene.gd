@@ -15,10 +15,11 @@ func _ready():
 	player.visible = false
 	in_game_ui.visible = true
 
-func _input(event):
+func _input(_event):
 	pass
 
 func _on_start_game():
+	"""Handles the Start Game action: shows gameplay nodes and starts the game."""
 	print("MainScene: Start Game action")
 	# Show gameplay nodes, hide menu
 	enemy_spawner.visible = true
@@ -28,14 +29,17 @@ func _on_start_game():
 	player.set_game_active(true)
 
 func _on_open_settings():
+	"""Handles the Open Settings action. (TODO: Implement settings menu logic)"""
 	print("MainScene: Open Settings action")
 	# TODO: Implement settings menu logic
 
 func _on_quit_game():
+	"""Handles the Quit Game action and exits the game."""
 	print("MainScene: Quit Game action")
 	get_tree().quit()
 
 func _on_weapon_selected(weapon_type):
+	"""Handles weapon selection and sets up the player with the chosen weapon."""
 	print("MainScene: Weapon selected: ", weapon_type)
 	# Give player only the selected weapon
 	if weapon_type == "Aura":

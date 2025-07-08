@@ -37,14 +37,15 @@ var mouse_position: Vector2 = Vector2.ZERO
 var is_manual_aiming: bool = false
 var pending_level_up: bool = false
 var pending_upgrades: Array = []
+var applied_upgrades: Array = []
 var projectile_damage: int = DEFAULT_PROJECTILE_DAMAGE
 var game_active: bool = false
 var aura: Node = null
 var _last_aura_scene: PackedScene = null
 # -- Projectile Upgrade Variables --
-var projectile_pierce_count: int = 0
-var has_projectile_explosive: bool = false
-var projectile_split_on_hit: bool = false
+var projectile_pierce_count: int = 0 # Number of enemies a projectile can pierce
+var has_projectile_explosive: bool = false # If projectiles explode on hit
+var projectile_split_on_hit: bool = false # If projectiles split on hit
 # -- Dash Variables --
 var dash_speed: float = 400.0
 var dash_duration: float = 0.12
@@ -150,7 +151,7 @@ func _process(delta: float) -> void:
 
 
 func handle_shooting(delta: float) -> void:
-	"""Handles both manual and auto-aim shooting logic."""
+	"""Handles both manual and auto-aim shooting logic. Shoots at mouse if manual, otherwise auto-aims at closest enemy."""
 	if is_manual_aiming and shoot_cooldown <= 0.0:
 		shoot_at_mouse()
 		shoot_cooldown = fire_rate
@@ -189,6 +190,7 @@ func handle_invincibility(delta: float) -> void:
 
 
 func find_closest_enemy() -> Node2D:
+	"""Finds the closest enemy within detection range."""
 	var closest_enemy: Node2D = null
 	var min_distance: float = detection_range
 	for enemy in get_tree().get_nodes_in_group("enemies"):
@@ -199,7 +201,7 @@ func find_closest_enemy() -> Node2D:
 	return closest_enemy
 
 
-func shoot(target: Node2D) -> void:
+func shoot(_target: Node2D) -> void:
 	if not projectile_scene:
 		return
 	var closest_enemy: Node2D = find_closest_enemy()
@@ -298,11 +300,11 @@ func level_up() -> void:
 
 
 func _on_upgrade_chosen(upgrade_id: String) -> void:
-	print("Upgrade chosen: ", upgrade_id)
-	for upg in pending_upgrades:
-		if upg.id == upgrade_id:
-			upg.apply.call(self)
-			break
+	var upgrade = get_upgrade_by_id(upgrade_id)
+	if upgrade:
+		if upgrade.has("apply"):
+			upgrade["apply"].call(self)
+		applied_upgrades.append(upgrade)
 	pending_level_up = false
 
 
@@ -311,9 +313,17 @@ func set_game_active(active: bool) -> void:
 
 
 func instance_aura() -> void:
-	if aura_scene and not aura:
-		aura = aura_scene.instantiate()
-		var camera = get_node_or_null("Camera")
-		if camera:
-			camera.add_child(aura)
-			aura.global_position = global_position
+	aura = aura_scene.instantiate()
+	owner.add_child(aura)
+	aura.global_position = global_position
+	# Re-apply all upgrades to the new aura
+	for upgrade in applied_upgrades:
+		if upgrade.has("apply"):
+			upgrade["apply"].call(self)
+
+
+func get_upgrade_by_id(upgrade_id: String):
+	for upg in get_node("/root/UpgradeRegistry").upgrades:
+		if upg.id == upgrade_id:
+			return upg
+	return null

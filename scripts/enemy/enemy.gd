@@ -82,6 +82,7 @@ func _on_body_entered(body: Node) -> void:
 		take_damage(body.damage)
 
 func take_damage(amount: int) -> void:
+	"""Reduces health, triggers blink, and handles death if health reaches zero."""
 	current_health -= amount
 	current_health = max(current_health, 0)
 	if animated_sprite:
@@ -92,6 +93,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	"""Handles enemy death, XP drop, and cleanup."""
 	drop_xp()
 	queue_free()
 

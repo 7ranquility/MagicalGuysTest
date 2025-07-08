@@ -2,9 +2,9 @@ extends Control
 
 signal upgrade_chosen(upgrade_id)
 
-var upgrades = []  # List of all possible upgrades (populated externally)
-var available_upgrades = []  # Upgrades to show this time
-var weapon_groups = {}  # {group_name: [upgrade_id, ...]}
+var upgrades: Array = []  # List of all possible upgrades (populated externally)
+var available_upgrades: Array = []  # Upgrades to show this time
+var weapon_groups: Dictionary = {}  # {group_name: [upgrade_id, ...]}
 
 const MAX_CHOICES = 3
 
@@ -15,6 +15,7 @@ func _ready():
 
 
 func show_menu(upgrade_pool: Array, group_filter: Array):
+	"""Shows the upgrade menu, filters upgrades by group, and updates the UI."""
 	print("show_menu called with upgrades:", upgrade_pool, " groups:", group_filter)
 	# upgrade_pool: all upgrades player could get
 	# group_filter: allowed weapon groups (e.g. ["Aura"])
@@ -36,6 +37,7 @@ func show_menu(upgrade_pool: Array, group_filter: Array):
 
 
 func _update_ui():
+	"""Updates the upgrade button UI with the current available upgrades."""
 	print("_update_ui called, available_upgrades:", available_upgrades)
 	var buttons_container = get_node("Panel/VBoxContainer/UpgradeButtons")
 	print("buttons_container:", buttons_container)
@@ -59,12 +61,15 @@ func _update_ui():
 			first_btn = btn
 	# Focus the first button and the menu
 	if first_btn:
+		first_btn.set_focus_mode(Control.FOCUS_ALL)
 		first_btn.grab_focus()
 	grab_focus()
+	buttons_container.set_focus_mode(Control.FOCUS_ALL)
 	buttons_container.queue_redraw()
 
 
 func _on_upgrade_selected(idx):
+	"""Handles the selection of an upgrade and emits the signal."""
 	var chosen = available_upgrades[idx]
 	emit_signal("upgrade_chosen", chosen.id)
 	visible = false
@@ -74,6 +79,7 @@ func _on_upgrade_selected(idx):
 
 # Gamepad/keyboard navigation
 func _unhandled_input(event):
+	"""Handles keyboard/gamepad navigation for the upgrade menu."""
 	if not visible:
 		return
 	if event is InputEventKey and event.pressed:
@@ -118,6 +124,7 @@ func _unhandled_input(event):
 
 # Utility for registering upgrades (to be called externally)
 func register_upgrade(upgrade):
+	"""Registers an upgrade and adds it to the weapon_groups dictionary."""
 	upgrades.append(upgrade)
 	if not weapon_groups.has(upgrade.group):
 		weapon_groups[upgrade.group] = []

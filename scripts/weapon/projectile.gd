@@ -18,12 +18,12 @@ var hit_count: int = 0
 const PROJ_SPEED: float = 750.0
 
 # -- Upgrade Flags --
-var explosive: bool = false
+var explosive: bool = false  # If true, explodes on hit
 var explosion_radius: float = 60.0
 var explosion_damage: int = 3
 const KNOCKBACK_FORCE: float = 50.0
 var split_on_hit: bool = false  # Only enabled by upgrade
-var can_split: bool = true
+var can_split: bool = true  # Prevents infinite splitting
 var lifetime: float = 0.0
 var lifetime_timer: float = 0.0
 var max_range: float = 1200.0
@@ -93,7 +93,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func create_explosion() -> void:
-	# Simple area damage effect
+	"""Deals area damage to all enemies within explosion_radius."""
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if is_instance_valid(enemy) and enemy.has_method("take_damage") and global_position.distance_to(enemy.global_position) <= explosion_radius:
 			enemy.take_damage(explosion_damage)
@@ -101,6 +101,7 @@ func create_explosion() -> void:
 
 
 func split_projectile() -> void:
+	"""Splits the projectile into two smaller, weaker projectiles with random directions."""
 	var scene = preload("res://scenes/weapon/projectile.tscn")
 	for i in range(2):
 		var new_proj = scene.instantiate()

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivfax"]
 radius = 5.0
 
-[node name="XPPickup" type="Area2D"]
+[node name="XPPickup" type="Area2D" groups=["xp_pickup"]]
 collision_layer = 8
 script = ExtResource("1_ivfax")
 

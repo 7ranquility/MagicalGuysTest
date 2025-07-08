@@ -43,6 +43,7 @@ func spawn_enemy() -> void:
 	get_tree().current_scene.add_child(enemy)
 
 func get_spawn_position() -> Vector2:
+	"""Returns a random spawn position around the player at spawn_distance."""
 	if not player:
 		return Vector2.ZERO
 	var angle: float = randf() * 2.0 * PI

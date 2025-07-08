@@ -2,8 +2,8 @@ class_name Aura
 extends Area2D
 
 # -- Exported Variables --
-@export var damage: int = 5
-@export var damage_interval: float = 0.5  # Damage every 0.5 seconds
+@export var damage: float = 1.0
+@export var damage_interval: float = 0.1  # Damage every 0.5 seconds
 @export var aura_radius: float = 20.0
 
 # -- Node References --
@@ -20,10 +20,10 @@ const SLOW_FACTOR: float = 0.75  # Enemies move at 75% speed in aura
 
 # -- Upgrade Flags --
 var has_magnet: bool = false
+var has_slow: bool = false
 var slowed_enemies: Array[Node] = []
 
 signal enemy_damaged(enemy: Node)
-
 
 func _ready() -> void:
 	"""Initializes the aura, connects signals, and sets the initial radius and scale."""
@@ -35,11 +35,9 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	enemies_in_aura.clear()
 
-
 func _exit_tree() -> void:
 	"""Resource cleanup and signal disconnection."""
 	# No dynamic signals to disconnect
-
 
 func _process(delta: float) -> void:
 	damage_timer += delta
@@ -49,20 +47,20 @@ func _process(delta: float) -> void:
 	# Magnet effect
 	if has_magnet:
 		pull_xp_pickups()
-
-	# Apply slow to enemies in aura
-	for enemy in enemies_in_aura:
-		if is_instance_valid(enemy) and enemy.is_in_group("enemies"):
-			if not slowed_enemies.has(enemy):
-				enemy.speed *= SLOW_FACTOR
-				slowed_enemies.append(enemy)
-	# Remove slow from enemies who left aura
-	for enemy in slowed_enemies.duplicate():
-		if not enemies_in_aura.has(enemy):
-			if is_instance_valid(enemy):
+	# Apply slow to enemies in aura only if has_slow is true
+	if has_slow:
+		# Remove all nulls and invalids from slowed_enemies first
+		slowed_enemies = slowed_enemies.filter(func(e): return is_instance_valid(e))
+		for enemy in enemies_in_aura:
+			if is_instance_valid(enemy) and enemy.is_in_group("enemies"):
+				if not slowed_enemies.has(enemy):
+					enemy.speed *= SLOW_FACTOR
+					slowed_enemies.append(enemy)
+		# Remove slow from enemies who left aura
+		for enemy in slowed_enemies.duplicate():
+			if not enemies_in_aura.has(enemy):
 				enemy.speed /= SLOW_FACTOR
-			slowed_enemies.erase(enemy)
-
+				slowed_enemies.erase(enemy)
 
 func damage_enemies_in_aura() -> void:
 	"""Damages all valid enemies within the aura and emits a signal for each."""
@@ -70,7 +68,6 @@ func damage_enemies_in_aura() -> void:
 		if is_instance_valid(enemy) and enemy.is_in_group("enemies"):
 			enemy.take_damage(damage)
 			emit_signal("enemy_damaged", enemy)
-
 
 func _on_area_entered(area: Area2D) -> void:
 	# Ignore player hurtbox
@@ -84,13 +81,11 @@ func _on_area_entered(area: Area2D) -> void:
 		if not enemies_in_aura.has(area):
 			enemies_in_aura.append(area)
 
-
 func _on_area_exited(area: Area2D) -> void:
 	if area.get_parent() and area.get_parent().is_in_group("enemies"):
 		enemies_in_aura.erase(area.get_parent())
 	elif area.is_in_group("enemies"):
 		enemies_in_aura.erase(area)
-
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
@@ -99,11 +94,9 @@ func _on_body_entered(body: Node) -> void:
 		if not enemies_in_aura.has(body):
 			enemies_in_aura.append(body)
 
-
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("enemies"):
 		enemies_in_aura.erase(body)
-
 
 func set_aura_radius(new_radius: float) -> void:
 	"""Sets the aura's radius and updates the collision shape and sprite scale."""
@@ -113,7 +106,6 @@ func set_aura_radius(new_radius: float) -> void:
 	if sprite.texture:
 		var scale_factor: float = aura_radius / SPRITE_VISUAL_RADIUS
 		sprite.scale = Vector2.ONE * scale_factor
-
 
 func pull_xp_pickups() -> void:
 	# Pull XP pickups within aura radius toward the player
