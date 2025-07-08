@@ -24,6 +24,7 @@ var is_manual_aiming: bool = false
 var pending_level_up := false
 var pending_upgrades := []
 var projectile_damage := 10
+var game_active := false
 
 
 func _ready():
@@ -59,6 +60,8 @@ func setup_hurtbox():
 
 
 func _input(event):
+	if not game_active:
+		return
 	# Update mouse position
 	if event is InputEventMouseMotion:
 		mouse_position = get_global_mouse_position()
@@ -73,6 +76,8 @@ func _input(event):
 
 
 func _physics_process(delta):
+	if not game_active:
+		return
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	animated_sprite.play("walk")
 	velocity = direction * SPEED
@@ -80,6 +85,8 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	if not game_active:
+		return
 	handle_shooting(delta)
 	handle_invincibility(delta)
 
@@ -199,7 +206,7 @@ func die():
 	print("Player died!")
 	# Add death logic here (game over screen, restart, etc.)
 	# For now, just restart the scene
-	get_tree().reload_current_scene()
+	get_tree().call_deferred("reload_current_scene")
 
 
 func gain_xp(amount: int):
@@ -270,3 +277,7 @@ func _on_upgrade_chosen(upgrade_id):
 	elif upgrade_id == "proj_firerate":
 		fire_rate = max(0.1, fire_rate * 0.8)
 	pending_level_up = false
+
+
+func set_game_active(active: bool):
+	game_active = active

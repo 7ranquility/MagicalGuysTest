@@ -79,4 +79,4 @@ func drop_xp() -> void:
 		var xp_pickup = xp_pickup_scene.instantiate()
 		xp_pickup.global_position = global_position
 		xp_pickup.xp_value = xp_drop_amount
-		get_parent().add_child(xp_pickup)
+		get_parent().call_deferred("add_child", xp_pickup)

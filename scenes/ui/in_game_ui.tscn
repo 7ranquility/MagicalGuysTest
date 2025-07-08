@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://btwim57o8xrcr"]
+[gd_scene load_steps=6 format=3 uid="uid://btwim57o8xrcr"]
 
 [ext_resource type="Texture2D" uid="uid://b84il8dp1erls" path="res://assets/ui/small_ui.png" id="1_uyty4"]
 [ext_resource type="Texture2D" uid="uid://7frpkfyuqt5p" path="res://assets/ui/big_ui.png" id="2_4db6k"]
+[ext_resource type="Script" uid="uid://bvs7r866x7fw6" path="res://scripts/main/in_game_ui.gd" id="in_game_ui_gd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eeonk"]
 texture = ExtResource("2_4db6k")
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("in_game_ui_gd")
 
 [node name="popupMenu" type="MarginContainer" parent="."]
 layout_mode = 1
