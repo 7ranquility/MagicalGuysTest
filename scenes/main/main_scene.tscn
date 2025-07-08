@@ -27,17 +27,13 @@ spawn_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("3_s7l2u")]
 
+[node name="Camera" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="LevelUpMenu" parent="UILayer" instance=ExtResource("LevelUpMenu_tscn")]
 visible = true
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -153.0
-offset_top = -34.0
-offset_right = 185.0
-offset_bottom = 189.0
 grow_horizontal = 1
 grow_vertical = 1
 

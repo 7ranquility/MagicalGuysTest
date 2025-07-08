@@ -27,12 +27,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
-radius = 14.0
-height = 32.0
+radius = 9.0
+height = 18.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 11
+collision_mask = 13
 script = ExtResource("1_7k104")
 speed = 40.0
 max_health = 20
@@ -45,7 +45,7 @@ frame_progress = 0.860289
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 2
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemies"]]
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_4gyqm")

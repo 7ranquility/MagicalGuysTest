@@ -1,71 +1,62 @@
+class_name EnemySpawner
 extends Node2D
 
+# -- Exported Variables --
 @export var enemy_scene: PackedScene
-@export var spawn_rate := 2.0  # enemies per second
-@export var spawn_distance := 800.0  # distance from player to spawn
-@export var max_enemies := 50  # maximum enemies on screen
-@export var spawn_enabled := true
+@export var spawn_rate: float = 2.0
+@export var spawn_distance: float = 800.0
+@export var max_enemies: int = 50
+@export var spawn_enabled: bool = true
 
-var spawn_timer := 0.0
-var player: Node2D
+# -- Member Variables --
+var spawn_timer: float = 0.0
+@onready var player: Node2D = null
 
-func _ready():
-	# Find the player
-	var players = get_tree().get_nodes_in_group("player")
+func _ready() -> void:
+	"""Initializes the enemy spawner and finds the player."""
+	_find_player()
+
+func _exit_tree() -> void:
+	"""Resource cleanup and signal disconnection."""
+	# No dynamic signals to disconnect
+
+func _find_player() -> void:
+	var players: Array = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]
 	else:
 		print("Player not found for enemy spawner!")
 
-
-func _process(delta):
+func _process(delta: float) -> void:
 	if not spawn_enabled or not player or not enemy_scene:
 		return
-
 	spawn_timer += delta
-
-	# Check if it's time to spawn and we haven't hit the limit
 	if spawn_timer >= (1.0 / spawn_rate) and get_enemy_count() < max_enemies:
 		spawn_enemy()
 		spawn_timer = 0.0
 
-
-func spawn_enemy():
-	var enemy = enemy_scene.instantiate()
-
-	# Get spawn position around the player
-	var spawn_pos = get_spawn_position()
+func spawn_enemy() -> void:
+	"""Spawns a new enemy at a random position around the player."""
+	var enemy: Node2D = enemy_scene.instantiate()
+	var spawn_pos: Vector2 = get_spawn_position()
 	enemy.global_position = spawn_pos
-
-	# Add to scene
 	get_tree().current_scene.add_child(enemy)
-
 
 func get_spawn_position() -> Vector2:
 	if not player:
 		return Vector2.ZERO
-
-	# Generate random angle
-	var angle = randf() * 2 * PI
-
-	# Calculate position at spawn_distance from player
-	var spawn_pos = player.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
-
+	var angle: float = randf() * 2.0 * PI
+	var spawn_pos: Vector2 = player.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
 	return spawn_pos
-
 
 func get_enemy_count() -> int:
 	return get_tree().get_nodes_in_group("enemies").size()
 
-
-# Optional: Functions to control spawning
-func start_spawning():
+func start_spawning() -> void:
 	spawn_enabled = true
 
-
-func stop_spawning():
+func stop_spawning() -> void:
 	spawn_enabled = false
 
-
-func set_spawn_rate(new_rate: float):
+func set_spawn_rate(new_rate: float) -> void:
 	spawn_rate = new_rate

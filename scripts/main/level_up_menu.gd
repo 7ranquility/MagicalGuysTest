@@ -12,7 +12,6 @@ const MAX_CHOICES = 3
 func _ready():
 	visible = false
 	set_process_input(false)
-	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func show_menu(upgrade_pool: Array, group_filter: Array):
@@ -62,10 +61,10 @@ func _update_ui():
 	if first_btn:
 		first_btn.grab_focus()
 	grab_focus()
+	buttons_container.queue_redraw()
 
 
 func _on_upgrade_selected(idx):
-	print("_on_upgrade_selected called with idx:", idx)
 	var chosen = available_upgrades[idx]
 	emit_signal("upgrade_chosen", chosen.id)
 	visible = false
@@ -77,13 +76,13 @@ func _on_upgrade_selected(idx):
 func _unhandled_input(event):
 	if not visible:
 		return
-	var buttons = get_node("Panel/VBoxContainer/UpgradeButtons").get_children()
-	var focused = null
-	for i in range(buttons.size()):
-		if buttons[i].has_focus():
-			focused = i
-			break
 	if event is InputEventKey and event.pressed:
+		var buttons = get_node("Panel/VBoxContainer/UpgradeButtons").get_children()
+		var focused = null
+		for i in range(buttons.size()):
+			if buttons[i].has_focus():
+				focused = i
+				break
 		if event.keycode == KEY_UP:
 			if focused != null and focused > 0:
 				buttons[focused - 1].grab_focus()
@@ -96,10 +95,13 @@ func _unhandled_input(event):
 			if focused != null:
 				buttons[focused].emit_signal("pressed")
 				accept_event()
-			elif buttons.size() == 1:
-				buttons[0].emit_signal("pressed")
-				accept_event()
 	elif event is InputEventJoypadButton and event.pressed:
+		var buttons = get_node("Panel/VBoxContainer/UpgradeButtons").get_children()
+		var focused = null
+		for i in range(buttons.size()):
+			if buttons[i].has_focus():
+				focused = i
+				break
 		if event.button_index == JOY_BUTTON_DPAD_UP:
 			if focused != null and focused > 0:
 				buttons[focused - 1].grab_focus()
@@ -111,9 +113,6 @@ func _unhandled_input(event):
 		elif event.button_index in [JOY_BUTTON_A, JOY_BUTTON_START]:
 			if focused != null:
 				buttons[focused].emit_signal("pressed")
-				accept_event()
-			elif buttons.size() == 1:
-				buttons[0].emit_signal("pressed")
 				accept_event()
 
 

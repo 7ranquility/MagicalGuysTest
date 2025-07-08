@@ -7,7 +7,6 @@
 radius = 147.085
 
 [node name="Aura" type="Area2D"]
-collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_gav06")
 
