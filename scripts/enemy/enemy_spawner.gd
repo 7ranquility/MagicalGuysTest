@@ -9,7 +9,6 @@ extends Node2D
 var spawn_timer := 0.0
 var player: Node2D
 
-
 func _ready():
 	# Find the player
 	var players = get_tree().get_nodes_in_group("player")

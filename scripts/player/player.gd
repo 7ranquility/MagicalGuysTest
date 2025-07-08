@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var xp_bar: ProgressBar = $XPBar
 @onready var hurtbox: Area2D = $HurtBox
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var aura: Node = $Camera2D/Aura
 
 var shoot_cooldown := 0.0
 var current_health: int
@@ -206,3 +207,6 @@ func level_up():
 	xp_to_next_level = int(xp_to_next_level * 1.5)  # Increase XP requirement
 	update_xp_bar()
 	print("Level up!")
+	# Example: Increase aura radius by 20 on level up
+	if aura and aura.has_method("set_aura_radius"):
+		aura.set_aura_radius(aura.aura_radius + 20)
