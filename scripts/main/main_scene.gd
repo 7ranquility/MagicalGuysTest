@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var level_up_menu = $LevelUpMenu
+@onready var level_up_menu = $UILayer/LevelUpMenu
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_L:

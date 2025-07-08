@@ -16,5 +16,4 @@ shape = SubResource("CircleShape2D_uufpx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(0.928473, 0.928473)
 texture = ExtResource("2_vjrgi")

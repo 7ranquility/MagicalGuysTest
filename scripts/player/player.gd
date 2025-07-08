@@ -21,6 +21,9 @@ var is_invincible: bool = false
 var invincibility_timer: float = 0.0
 var mouse_position: Vector2
 var is_manual_aiming: bool = false
+var pending_level_up := false
+var pending_upgrades := []
+var projectile_damage := 10
 
 
 func _ready():
@@ -29,6 +32,10 @@ func _ready():
 	setup_xp_bar()
 	setup_hurtbox()
 	add_to_group("player")
+	# Connect to LevelUpMenu signal
+	var menu = get_level_up_menu()
+	if menu:
+		menu.connect("upgrade_chosen", Callable(self, "_on_upgrade_chosen"))
 
 
 func setup_health_bar():
@@ -97,7 +104,8 @@ func shoot_at_mouse():
 	var projectile = ProjectileScene.instantiate()
 	owner.add_child(projectile)
 	projectile.global_position = $Muzzle.global_position
-
+	# Set projectile damage (directly, since all projectiles have 'damage')
+	projectile.damage = projectile_damage
 	# Calculate direction to mouse
 	var direction = (mouse_position - $Muzzle.global_position).normalized()
 	projectile.rotation = direction.angle()
@@ -134,6 +142,8 @@ func shoot(target: Node2D):
 		var b = ProjectileScene.instantiate()
 		owner.add_child(b)
 		b.global_position = $Muzzle.global_position
+		# Set projectile damage (directly)
+		b.damage = projectile_damage
 		var dir = ($Muzzle.global_position.direction_to(closest_enemy.global_position)).normalized()
 		b.rotation = dir.angle()
 		b.direction = dir
@@ -202,11 +212,61 @@ func gain_xp(amount: int):
 		level_up()
 
 
+func get_level_up_menu():
+	# Now looks for LevelUpMenu under UILayer
+	return get_tree().current_scene.get_node_or_null("UILayer/LevelUpMenu")
+
+
 func level_up():
 	current_xp -= xp_to_next_level
 	xp_to_next_level = int(xp_to_next_level * 1.5)  # Increase XP requirement
 	update_xp_bar()
 	print("Level up!")
-	# Example: Increase aura radius by 20 on level up
-	if aura and aura.has_method("set_aura_radius"):
-		aura.set_aura_radius(aura.aura_radius + 20)
+	# Prepare upgrades
+	pending_level_up = true
+	pending_upgrades = []
+	if aura:
+		pending_upgrades.append({
+			id = "aura_damage",
+			name = "Aura Damage",
+			description = "+5 Aura Damage",
+			group = "Aura"
+		})
+		pending_upgrades.append({
+			id = "aura_radius",
+			name = "Aura Radius",
+			description = "+5 Aura Radius",
+			group = "Aura"
+		})
+	if ProjectileScene:
+		pending_upgrades.append({
+			id = "proj_damage",
+			name = "Projectile Damage",
+			description = "+10 Projectile Damage",
+			group = "Projectile"
+		})
+		pending_upgrades.append({
+			id = "proj_firerate",
+			name = "Projectile Fire Rate",
+			description = "Faster Fire Rate",
+			group = "Projectile"
+		})
+	# Show menu
+	var menu = get_level_up_menu()
+	if menu:
+		menu.show_menu(pending_upgrades, ["Aura", "Projectile"])
+
+
+func _on_upgrade_chosen(upgrade_id):
+	print("Upgrade chosen: ", upgrade_id)
+	if upgrade_id == "aura_damage" and aura:
+		aura.damage += 5
+	elif upgrade_id == "aura_radius" and aura:
+		print("Before: aura.aura_radius=", aura.aura_radius)
+		aura.set_aura_radius(aura.aura_radius + 5)
+		print("After: aura.aura_radius=", aura.aura_radius)
+	elif upgrade_id == "proj_damage":
+		projectile_damage += 10
+	elif upgrade_id == "proj_firerate":
+		fire_rate = max(0.1, fire_rate * 0.8)
+	pending_level_up = false

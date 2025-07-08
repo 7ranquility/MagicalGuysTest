@@ -5,13 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://clux3klygbqmw" path="res://scenes/enemy/enemy.tscn" id="2_24sno"]
 [ext_resource type="PackedScene" uid="uid://cvvure83jd3oi" path="res://scenes/player/player.tscn" id="3_s7l2u"]
 [ext_resource type="PackedScene" uid="uid://bkj5oue6aa54h" path="res://scenes/main/LevelUpMenu.tscn" id="LevelUpMenu_tscn"]
-
-[sub_resource type="GDScript" id="GDScript_o3jxj"]
-script/source = "extends Node2D
-"
+[ext_resource type="Script" uid="uid://ct50ma43vkims" path="res://scripts/main/main_scene.gd" id="main_scene_gd"]
 
 [node name="MainScene" type="Node2D"]
-script = SubResource("GDScript_o3jxj")
+script = ExtResource("main_scene_gd")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -28,6 +25,14 @@ spawn_distance = 300.0
 
 [node name="Player" parent="." instance=ExtResource("3_s7l2u")]
 
-[node name="LevelUpMenu" parent="." instance=ExtResource("LevelUpMenu_tscn")]
-layout_mode = 3
-anchors_preset = 15
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="LevelUpMenu" parent="UILayer" instance=ExtResource("LevelUpMenu_tscn")]
+visible = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -153.0
+offset_top = -34.0
+offset_right = 185.0
+offset_bottom = 189.0
