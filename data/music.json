@@ -1,0 +1,32 @@
+{
+  "tracks": {
+    "lofi_grove": {
+      "name": "Lo-Fi Grove", "bpm": 84, "swing": 0.18,
+      "root": 50, "scale": [0, 2, 3, 5, 7, 9, 10], "progression": [0, 3, 6, 4],
+      "parts": {
+        "drums": {"kind": "drums", "vol": 0.55, "kick": "x.....x...x.....", "snare": "....x.......x...", "hat": "x.o.x.o.x.o.x.oo"},
+        "bass": {"kind": "line", "timbre": "bass", "octave": -1, "vol": 0.5, "len": 3, "pattern": "1.....1...5...1."},
+        "keys": {"kind": "chords", "timbre": "epiano", "octave": 0, "vol": 0.3, "tones": [0, 2, 4, 6], "len": 14},
+        "perc": {"kind": "drums", "vol": 0.4, "kick": "...x.....x.....x", "snare": "..........o...o.", "hat": "oxoxoxoxoxoxoxox"}
+      }
+    }
+  },
+  "instrument_layers": {
+    "guitar": {"kind": "weapon", "timbre": "guitar", "octave": 1, "vol": 0.3, "motif": [0, 4, 2, 7, 4, 2]},
+    "drums": {"kind": "weapon", "kit": true, "vol": 0.5},
+    "bass": {"kind": "weapon", "timbre": "bass", "octave": -1, "vol": 0.5, "motif": [0, 0, 4, 2]},
+    "violin": {"kind": "weapon", "timbre": "violin", "octave": 2, "vol": 0.2, "motif": [4, 2, 0, 2, 4, 6, 7, 4]},
+    "trumpet": {"kind": "weapon", "timbre": "trumpet", "octave": 1, "vol": 0.22, "motif": [0, 2, 4, 4, 7, 4]},
+    "piano": {"kind": "weapon", "timbre": "piano", "octave": 1, "vol": 0.35, "motif": [0, 2, 4, 6, 4, 2, 7, 4]},
+    "harp": {"kind": "weapon", "timbre": "harp", "octave": 2, "vol": 0.3, "motif": [0, 2, 4, 7, 9, 7, 4, 2]},
+    "synth": {"kind": "weapon", "timbre": "square", "octave": 1, "vol": 0.16, "motif": [0, 7, 4, 7, 2, 7]},
+    "cello": {"kind": "weapon", "timbre": "violin", "octave": 0, "vol": 0.28, "motif": [0, 4, 2, 0]},
+    "flute": {"kind": "weapon", "timbre": "flute", "octave": 2, "vol": 0.22, "motif": [4, 6, 7, 6, 4, 2, 0, 2]},
+    "choir": {"kind": "weapon", "timbre": "choir", "octave": 1, "vol": 0.2, "motif": [0, 2, 4, 2]},
+    "turntable": {"kind": "weapon", "timbre": "scratch", "octave": 1, "vol": 0.25, "motif": [0, 4, 0, 7]},
+    "triangle": {"kind": "weapon", "timbre": "bell", "octave": 3, "vol": 0.2, "motif": [4, 7, 4, 9]},
+    "organ": {"kind": "weapon", "timbre": "organ", "octave": 0, "vol": 0.2, "motif": [0, 2, 4, 2]},
+    "theremin": {"kind": "weapon", "timbre": "sine", "octave": 2, "vol": 0.22, "motif": [0, 1, 2, 4, 6, 4, 2, 1]},
+    "cowbell": {"kind": "weapon", "timbre": "cowbell", "octave": 2, "vol": 0.3, "motif": [0, 0, 0, 0]}
+  }
+}

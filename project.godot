@@ -17,7 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-UpgradeRegistry="*res://scripts/main/upgrade_registry.gd"
+Content="*res://scripts/autoload/content.gd"
+Save="*res://scripts/autoload/save.gd"
+Audio="*res://scripts/autoload/audio.gd"
+Music="*res://scripts/autoload/music.gd"
+Game="*res://scripts/autoload/game.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
@@ -31,6 +35,8 @@ layout/style_directory={}
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -99,3 +105,7 @@ dialogic_default_action={
 2d_navigation/layer_3="Projectile"
 2d_physics/layer_4="Environment"
 2d_navigation/layer_4="Environment"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

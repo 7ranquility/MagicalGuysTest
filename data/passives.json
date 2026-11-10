@@ -1,0 +1,18 @@
+{
+  "metronome": {"name": "Metronome", "icon": "ico_metronome", "desc": "Instruments play 8% more often.", "stats": {"cooldown": -0.08}, "max": 5},
+  "amplifier": {"name": "Amplifier", "icon": "ico_amplifier", "desc": "+10% attack area.", "stats": {"area": 0.1}, "max": 5},
+  "sustain_pedal": {"name": "Sustain Pedal", "icon": "ico_sustain_pedal", "desc": "+10% effect duration.", "stats": {"duration": 0.1}, "max": 5},
+  "volume_knob": {"name": "Volume Knob", "icon": "ico_volume_knob", "desc": "+10% damage.", "stats": {"might": 0.1}, "max": 5},
+  "tuning_fork": {"name": "Tuning Fork", "icon": "ico_tuning_fork", "desc": "+10% projectile speed.", "stats": {"speed": 0.1}, "max": 5},
+  "encore": {"name": "Encore", "icon": "ico_encore", "desc": "+1 projectile for every instrument that can use it.", "stats": {"amount": 1}, "max": 2, "rarity": 55},
+  "groupie_magnet": {"name": "Groupie Magnet", "icon": "ico_groupie_magnet", "desc": "+25% pickup radius.", "stats": {"magnet": 0.25}, "max": 5},
+  "stage_presence": {"name": "Stage Presence", "icon": "ico_stage_presence", "desc": "+20% max HP.", "stats": {"max_hp": 0.2}, "max": 5},
+  "earplugs": {"name": "Earplugs", "icon": "ico_earplugs", "desc": "+1 armor.", "stats": {"armor": 1}, "max": 5},
+  "royalties": {"name": "Royalties", "icon": "ico_royalties", "desc": "+10% gold.", "stats": {"greed": 0.1}, "max": 5},
+  "lucky_pick": {"name": "Lucky Pick", "icon": "ico_lucky_pick", "desc": "+10% luck: better drops, chests and a chance for a fourth level-up choice.", "stats": {"luck": 0.1}, "max": 5},
+  "roadie": {"name": "Roadie", "icon": "ico_roadie", "desc": "+1 revival. The roadie drags you back on stage.", "stats": {"revival": 1}, "max": 2, "rarity": 45},
+  "capo": {"name": "Capo", "icon": "ico_capo", "desc": "+10% move speed.", "stats": {"move_speed": 0.1}, "max": 5},
+  "setlist": {"name": "Setlist", "icon": "ico_setlist", "desc": "+8% experience.", "stats": {"growth": 0.08}, "max": 5},
+  "backstage_pass": {"name": "Backstage Pass", "icon": "ico_backstage_pass", "desc": "Recover 0.2 HP per second.", "stats": {"recovery": 0.2}, "max": 5},
+  "spotlight": {"name": "Spotlight", "icon": "ico_spotlight", "desc": "+10% curse: more and tougher enemies, so more experience.", "stats": {"curse": 0.1}, "max": 5, "rarity": 60}
+}

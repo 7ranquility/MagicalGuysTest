@@ -1,0 +1,21 @@
+{
+  "might": {"name": "Might", "stat": "might", "per_level": 0.05, "max": 5, "cost": 200, "icon": "ico_volume_knob", "desc": "+5% damage per rank."},
+  "armor": {"name": "Armor", "stat": "armor", "per_level": 1, "max": 3, "cost": 600, "icon": "ico_earplugs", "desc": "-1 damage taken per rank."},
+  "max_hp": {"name": "Max Health", "stat": "max_hp", "per_level": 0.1, "max": 3, "cost": 200, "icon": "ico_stage_presence", "desc": "+10% max HP per rank."},
+  "recovery": {"name": "Recovery", "stat": "recovery", "per_level": 0.1, "max": 5, "cost": 200, "icon": "ico_backstage_pass", "desc": "+0.1 HP per second per rank."},
+  "cooldown": {"name": "Cooldown", "stat": "cooldown", "per_level": -0.025, "max": 2, "cost": 900, "icon": "ico_metronome", "desc": "Instruments play 2.5% more often per rank."},
+  "area": {"name": "Area", "stat": "area", "per_level": 0.05, "max": 2, "cost": 300, "icon": "ico_amplifier", "desc": "+5% attack area per rank."},
+  "speed": {"name": "Speed", "stat": "speed", "per_level": 0.1, "max": 2, "cost": 300, "icon": "ico_tuning_fork", "desc": "+10% projectile speed per rank."},
+  "duration": {"name": "Duration", "stat": "duration", "per_level": 0.15, "max": 2, "cost": 300, "icon": "ico_sustain_pedal", "desc": "+15% effect duration per rank."},
+  "amount": {"name": "Amount", "stat": "amount", "per_level": 1, "max": 1, "cost": 5000, "icon": "ico_encore", "desc": "+1 projectile for every instrument."},
+  "move_speed": {"name": "Move Speed", "stat": "move_speed", "per_level": 0.05, "max": 2, "cost": 300, "icon": "ico_capo", "desc": "+5% move speed per rank."},
+  "magnet": {"name": "Magnet", "stat": "magnet", "per_level": 0.25, "max": 2, "cost": 300, "icon": "ico_groupie_magnet", "desc": "+25% pickup radius per rank."},
+  "luck": {"name": "Luck", "stat": "luck", "per_level": 0.1, "max": 3, "cost": 600, "icon": "ico_lucky_pick", "desc": "+10% luck per rank."},
+  "growth": {"name": "Growth", "stat": "growth", "per_level": 0.03, "max": 5, "cost": 900, "icon": "ico_setlist", "desc": "+3% experience per rank."},
+  "greed": {"name": "Greed", "stat": "greed", "per_level": 0.1, "max": 5, "cost": 200, "icon": "ico_royalties", "desc": "+10% gold per rank."},
+  "curse": {"name": "Curse", "stat": "curse", "per_level": 0.1, "max": 5, "cost": 1666, "icon": "ui_curse", "desc": "+10% enemy numbers, health and speed per rank. For those who want it harder."},
+  "revival": {"name": "Revival", "stat": "revival", "per_level": 1, "max": 1, "cost": 10000, "icon": "ui_revive", "desc": "Come back once per run with half HP."},
+  "reroll": {"name": "Reroll", "stat": "reroll", "per_level": 1, "max": 5, "cost": 1000, "icon": "ui_reroll", "desc": "+1 reroll of level-up choices per run."},
+  "skip": {"name": "Skip", "stat": "skip", "per_level": 1, "max": 5, "cost": 100, "icon": "ui_skip", "desc": "+1 skip of a level-up per run."},
+  "banish": {"name": "Banish", "stat": "banish", "per_level": 1, "max": 5, "cost": 100, "icon": "ui_banish", "desc": "+1 banish per run: remove a choice from the rest of the run."}
+}

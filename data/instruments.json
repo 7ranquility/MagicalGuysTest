@@ -1,0 +1,239 @@
+{
+  "guitar": {
+    "name": "Electric Guitar", "icon": "ico_guitar", "color": "#ffd23f", "pattern": "beam",
+    "desc": "Power chord beam that pierces everything in the direction you face.",
+    "evolves_with": "volume_knob", "phase": 0,
+    "base": {"damage": 14, "cooldown": 1.5, "amount": 1, "length": 230, "width": 16, "knockback": 30},
+    "levels": [{"damage": 5}, {"width": 6}, {"amount": 1}, {"damage": 6}, {"length": 60}, {"cooldown": -0.25}, {"amount": 1, "damage": 4}]
+  },
+  "drums": {
+    "name": "Drums", "icon": "ico_drums", "color": "#ff6b5e", "pattern": "ring",
+    "desc": "A shockwave ring bursts out around you on the beat.",
+    "evolves_with": "metronome", "phase": 0,
+    "base": {"damage": 9, "cooldown": 1.6, "amount": 1, "radius": 62, "knockback": 70},
+    "levels": [{"radius": 12}, {"damage": 4}, {"amount": 1}, {"radius": 14}, {"damage": 5}, {"cooldown": -0.3}, {"damage": 6, "radius": 12}]
+  },
+  "bass": {
+    "name": "Bass", "icon": "ico_bass", "color": "#6b7cff", "pattern": "wave", "sprite": "shot_slash",
+    "desc": "Slow, heavy low-end wave. Pierces and shoves enemies far back.",
+    "evolves_with": "amplifier", "phase": 0,
+    "base": {"damage": 18, "cooldown": 2.8, "amount": 1, "radius": 22, "proj_speed": 115, "duration": 2.4, "knockback": 240},
+    "levels": [{"damage": 6}, {"radius": 7}, {"amount": 1}, {"damage": 8}, {"cooldown": -0.4}, {"radius": 8}, {"amount": 1, "damage": 6}]
+  },
+  "violin": {
+    "name": "Violin", "icon": "ico_violin", "color": "#ff9f5a", "pattern": "homing", "sprite": "shot_slash",
+    "desc": "Fast bow slashes that seek out the nearest enemy.",
+    "evolves_with": "tuning_fork", "phase": 2,
+    "base": {"damage": 9, "cooldown": 1.1, "amount": 1, "proj_speed": 250, "pierce": 1, "duration": 2.2, "turn": 6, "radius": 6},
+    "levels": [{"amount": 1}, {"damage": 4}, {"pierce": 1}, {"amount": 1}, {"damage": 5}, {"cooldown": -0.15}, {"amount": 1, "pierce": 1}]
+  },
+  "trumpet": {
+    "name": "Trumpet", "icon": "ico_trumpet", "color": "#ffe45e", "pattern": "cone",
+    "desc": "A brassy cone blast in front of you that knocks enemies back.",
+    "evolves_with": "stage_presence", "phase": 4,
+    "base": {"damage": 13, "cooldown": 1.7, "amount": 1, "range": 125, "angle": 55, "knockback": 150},
+    "levels": [{"damage": 5}, {"range": 22}, {"angle": 12}, {"amount": 1}, {"damage": 7}, {"cooldown": -0.25}, {"range": 28, "damage": 4}]
+  },
+  "piano": {
+    "name": "Piano", "icon": "ico_piano", "color": "#f4f4ff", "pattern": "rain", "sprite": "shot_note",
+    "desc": "Notes rain down on random enemies and burst on impact.",
+    "evolves_with": "sustain_pedal", "phase": 2,
+    "base": {"damage": 16, "cooldown": 1.8, "amount": 2, "radius": 28, "delay": 0.4, "knockback": 20},
+    "levels": [{"amount": 1}, {"damage": 6}, {"radius": 8}, {"amount": 1}, {"damage": 8}, {"cooldown": -0.25}, {"amount": 2}]
+  },
+  "harp": {
+    "name": "Harp", "icon": "ico_harp", "color": "#9be7ff", "pattern": "orbit", "sprite": "shot_needle",
+    "desc": "Strings orbit you and cut whatever they touch.",
+    "evolves_with": "capo", "phase": 0,
+    "base": {"damage": 7, "cooldown": 4.2, "amount": 2, "orbit_radius": 58, "radius": 9, "duration": 2.6, "spin": 3.2, "tick": 0.45, "knockback": 40},
+    "levels": [{"amount": 1}, {"orbit_radius": 12, "speed": 0.2}, {"duration": 0.7}, {"amount": 1}, {"damage": 4}, {"duration": 0.7}, {"amount": 1, "damage": 3}]
+  },
+  "synth": {
+    "name": "Synthesizer", "icon": "ico_synth", "color": "#c77dff", "pattern": "bounce", "sprite": "shot_wave",
+    "desc": "Waveforms that ricochet off the edges of the screen.",
+    "evolves_with": "encore", "phase": 6,
+    "base": {"damage": 10, "cooldown": 1.5, "amount": 1, "proj_speed": 220, "radius": 7, "duration": 3.0},
+    "levels": [{"damage": 4}, {"duration": 0.6}, {"amount": 1}, {"damage": 5}, {"speed": 0.25}, {"amount": 1}, {"damage": 6, "cooldown": -0.2}]
+  },
+  "cello": {
+    "name": "Cello", "icon": "ico_cello", "color": "#c08552", "pattern": "slash",
+    "desc": "Wide bow strokes sweep beside you. Close range, strong.",
+    "evolves_with": "earplugs", "phase": 0,
+    "base": {"damage": 15, "cooldown": 1.3, "amount": 1, "range": 85, "angle": 110, "knockback": 90},
+    "levels": [{"damage": 5}, {"amount": 1}, {"range": 15}, {"damage": 6}, {"range": 15}, {"cooldown": -0.2}, {"damage": 8}]
+  },
+  "flute": {
+    "name": "Flute", "icon": "ico_flute", "color": "#7ae7c7", "pattern": "stream", "sprite": "shot_needle",
+    "desc": "A rapid run of needle notes in the direction you face.",
+    "evolves_with": "lucky_pick", "phase": 1, "stagger": 0.5,
+    "base": {"damage": 6, "cooldown": 0.45, "amount": 1, "proj_speed": 380, "pierce": 1, "radius": 5, "duration": 1.2},
+    "levels": [{"amount": 1}, {"damage": 3}, {"pierce": 1}, {"amount": 1}, {"cooldown": -0.07}, {"damage": 4}, {"amount": 1}]
+  },
+  "choir": {
+    "name": "Choir", "icon": "ico_choir", "color": "#ffd6f5", "pattern": "aura", "fixed_amount": true,
+    "desc": "Voices pulse around you, hurting and slowing everything close.",
+    "evolves_with": "backstage_pass", "phase": 0,
+    "on_hit": {"slow": 0.85, "slow_time": 0.7},
+    "base": {"damage": 4, "cooldown": 0.6, "radius": 52, "knockback": 10},
+    "levels": [{"radius": 10}, {"damage": 2}, {"radius": 8}, {"damage": 2}, {"radius": 10}, {"cooldown": -0.1}, {"damage": 3, "radius": 10}]
+  },
+  "turntable": {
+    "name": "Turntable", "icon": "ico_turntable", "color": "#5ef1ff", "pattern": "boomerang", "sprite": "shot_vinyl",
+    "desc": "Flings records that cut through enemies and spin back to you.",
+    "evolves_with": "royalties", "phase": 4,
+    "base": {"damage": 12, "cooldown": 2.0, "amount": 1, "proj_speed": 300, "radius": 11, "duration": 1.8, "knockback": 30},
+    "levels": [{"damage": 5}, {"amount": 1}, {"radius": 3}, {"damage": 6}, {"amount": 1}, {"cooldown": -0.3}, {"damage": 8}]
+  },
+  "triangle": {
+    "name": "Triangle", "icon": "ico_triangle", "color": "#e8f1f2", "pattern": "chain", "fixed_amount": true,
+    "desc": "One bright ting that arcs from enemy to enemy.",
+    "evolves_with": "groupie_magnet", "phase": 8,
+    "base": {"damage": 14, "cooldown": 1.9, "amount": 1, "chains": 3, "range": 150, "jump": 90},
+    "levels": [{"chains": 1}, {"damage": 5}, {"amount": 1}, {"chains": 2}, {"damage": 6}, {"cooldown": -0.3}, {"chains": 2, "damage": 4}]
+  },
+  "organ": {
+    "name": "Organ", "icon": "ico_organ", "color": "#b388ff", "pattern": "puddle", "sprite": "shot_pipe",
+    "desc": "Pipes erupt under enemies and leave a droning pool of damage.",
+    "evolves_with": "setlist", "phase": 0,
+    "base": {"damage": 6, "cooldown": 3.2, "amount": 1, "radius": 36, "duration": 3.0, "tick": 0.5},
+    "levels": [{"amount": 1}, {"radius": 8}, {"damage": 3}, {"duration": 0.8}, {"amount": 1}, {"damage": 3}, {"cooldown": -0.5}]
+  },
+  "theremin": {
+    "name": "Theremin", "icon": "ico_theremin", "color": "#73fbd3", "pattern": "lock", "fixed_amount": true,
+    "desc": "An eerie arc locks on to the nearest enemies. Never misses.",
+    "evolves_with": "spotlight", "phase": 1,
+    "base": {"damage": 8, "cooldown": 0.5, "amount": 1, "range": 165},
+    "levels": [{"damage": 3}, {"amount": 1}, {"range": 30}, {"damage": 4}, {"amount": 1}, {"cooldown": -0.1}, {"damage": 6}]
+  },
+  "cowbell": {
+    "name": "Cowbell", "icon": "ico_cowbell", "color": "#f4a259", "pattern": "lob", "sprite": "shot_bell",
+    "desc": "Lobs a bell that explodes where it lands. It needs more.",
+    "evolves_with": "roadie", "phase": 2,
+    "base": {"damage": 22, "cooldown": 2.2, "amount": 1, "radius": 40, "range": 150, "knockback": 60},
+    "levels": [{"damage": 8}, {"amount": 1}, {"radius": 10}, {"damage": 8}, {"amount": 1}, {"cooldown": -0.3}, {"radius": 12, "damage": 6}]
+  },
+
+  "feedback_axe": {
+    "name": "Feedback Axe", "icon": "ico_guitar_evo", "color": "#ff4fd8", "pattern": "beam",
+    "desc": "Four screaming beams that rotate around you and slow what they hit.",
+    "from": ["guitar"], "needs_passive": "volume_knob", "rotate": true, "fixed_amount": true,
+    "on_hit": {"slow": 0.7, "slow_time": 1.0},
+    "base": {"damage": 42, "cooldown": 0.9, "amount": 4, "length": 380, "width": 34, "knockback": 60}
+  },
+  "thunder_kit": {
+    "name": "Thunder Kit", "icon": "ico_drums_evo", "color": "#fff06b", "pattern": "ring",
+    "desc": "Double-time shockwaves that stun, with lightning fills between the beats.",
+    "from": ["drums"], "needs_passive": "metronome",
+    "on_hit": {"stun": 0.35},
+    "base": {"damage": 30, "cooldown": 0.8, "amount": 2, "radius": 140, "knockback": 110},
+    "sub": [{"pattern": "chain", "color": "#fff7a1", "fixed_amount": true, "phase": 2,
+             "base": {"damage": 28, "cooldown": 1.6, "amount": 3, "chains": 4, "range": 260, "jump": 110}}]
+  },
+  "subwoofer_of_doom": {
+    "name": "Subwoofer of Doom", "icon": "ico_bass_evo", "color": "#3d5aff", "pattern": "wave", "sprite": "shot_slash",
+    "desc": "Walls of bass roll out in four directions and stun on impact.",
+    "from": ["bass"], "needs_passive": "amplifier", "fixed_amount": true,
+    "on_hit": {"stun": 0.5},
+    "base": {"damage": 55, "cooldown": 2.0, "amount": 4, "radius": 52, "proj_speed": 140, "duration": 3.0, "knockback": 380}
+  },
+  "stradivarius_storm": {
+    "name": "Stradivarius Storm", "icon": "ico_violin_evo", "color": "#ffb347", "pattern": "homing", "sprite": "shot_slash",
+    "desc": "A flurry of seeking slashes that pass through whole crowds.",
+    "from": ["violin"], "needs_passive": "tuning_fork",
+    "base": {"damage": 26, "cooldown": 0.5, "amount": 5, "proj_speed": 330, "pierce": 4, "duration": 2.6, "turn": 9, "radius": 8}
+  },
+  "fanfare_of_kings": {
+    "name": "Fanfare of Kings", "icon": "ico_trumpet_evo", "color": "#fff3b0", "pattern": "cone",
+    "desc": "Triple-tongued royal blasts, front and back.",
+    "from": ["trumpet"], "needs_passive": "stage_presence", "both_sides": true,
+    "base": {"damage": 46, "cooldown": 1.0, "amount": 3, "range": 230, "angle": 80, "knockback": 220}
+  },
+  "grand_finale": {
+    "name": "Grand Finale", "icon": "ico_piano_evo", "color": "#ffffff", "pattern": "rain", "sprite": "shot_note2",
+    "desc": "Whole chords crash down across the screen and stun.",
+    "from": ["piano"], "needs_passive": "sustain_pedal",
+    "on_hit": {"stun": 0.4},
+    "base": {"damage": 58, "cooldown": 1.2, "amount": 7, "radius": 58, "delay": 0.35, "knockback": 60}
+  },
+  "celestial_lyre": {
+    "name": "Celestial Lyre", "icon": "ico_harp_evo", "color": "#d6f6ff", "pattern": "orbit", "sprite": "shot_needle",
+    "desc": "Two counter-rotating rings of strings that never stop.",
+    "from": ["harp"], "needs_passive": "capo", "permanent": true,
+    "base": {"damage": 20, "cooldown": 3.0, "amount": 7, "orbit_radius": 80, "radius": 12, "duration": 3.0, "spin": 3.6, "tick": 0.35, "knockback": 60, "rings": 2}
+  },
+  "modular_monster": {
+    "name": "Modular Monster", "icon": "ico_synth_evo", "color": "#e0aaff", "pattern": "bounce", "sprite": "shot_wave",
+    "desc": "Waveforms that split every time they hit a wall.",
+    "from": ["synth"], "needs_passive": "encore",
+    "base": {"damage": 28, "cooldown": 1.2, "amount": 4, "proj_speed": 280, "radius": 10, "duration": 5.0, "splits": 2}
+  },
+  "requiem_bow": {
+    "name": "Requiem Bow", "icon": "ico_cello_evo", "color": "#e09f6b", "pattern": "slash",
+    "desc": "Huge strokes on both sides. Kills sometimes heal you.",
+    "from": ["cello"], "needs_passive": "earplugs", "lifesteal": 0.08,
+    "base": {"damage": 50, "cooldown": 0.9, "amount": 2, "range": 150, "angle": 150, "knockback": 130}
+  },
+  "pied_piper": {
+    "name": "Pied Piper", "icon": "ico_flute_evo", "color": "#a8ffe0", "pattern": "stream", "sprite": "shot_needle",
+    "desc": "A torrent of piercing notes that leaves enemies dazed and slow.",
+    "from": ["flute"], "needs_passive": "lucky_pick", "stagger": 0.5,
+    "on_hit": {"slow": 0.5, "slow_time": 2.0},
+    "base": {"damage": 16, "cooldown": 0.22, "amount": 3, "proj_speed": 440, "pierce": 5, "radius": 6, "duration": 1.4}
+  },
+  "hallelujah": {
+    "name": "Hallelujah", "icon": "ico_choir_evo", "color": "#fff0fb", "pattern": "aura", "fixed_amount": true,
+    "desc": "A vast chorus that slows everything and steadily heals you.",
+    "from": ["choir"], "needs_passive": "backstage_pass",
+    "on_hit": {"slow": 0.55, "slow_time": 1.0}, "player_bonus": {"recovery": 0.6},
+    "base": {"damage": 14, "cooldown": 0.4, "radius": 120, "knockback": 25}
+  },
+  "platinum_record": {
+    "name": "Platinum Record", "icon": "ico_turntable_evo", "color": "#f1faff", "pattern": "boomerang", "sprite": "shot_vinyl",
+    "desc": "Four platinum discs. Kills sometimes pay out in coins.",
+    "from": ["turntable"], "needs_passive": "royalties", "gold_on_kill": 0.04,
+    "base": {"damage": 38, "cooldown": 1.4, "amount": 4, "proj_speed": 340, "radius": 16, "duration": 2.2, "knockback": 40}
+  },
+  "golden_triangle": {
+    "name": "Golden Triangle", "icon": "ico_triangle_evo", "color": "#ffe66d", "pattern": "chain", "fixed_amount": true,
+    "desc": "Three tings that chain through the whole crowd and widen your pickup reach.",
+    "from": ["triangle"], "needs_passive": "groupie_magnet",
+    "on_hit": {"stun": 0.2}, "player_bonus": {"magnet": 0.5},
+    "base": {"damage": 44, "cooldown": 1.2, "amount": 3, "chains": 10, "range": 220, "jump": 120}
+  },
+  "phantoms_organ": {
+    "name": "Phantom's Organ", "icon": "ico_organ_evo", "color": "#d0b3ff", "pattern": "puddle", "sprite": "shot_pipe",
+    "desc": "Great pools of sound that linger, slow and devour.",
+    "from": ["organ"], "needs_passive": "setlist",
+    "on_hit": {"slow": 0.6, "slow_time": 0.8},
+    "base": {"damage": 18, "cooldown": 2.4, "amount": 4, "radius": 66, "duration": 5.0, "tick": 0.4}
+  },
+  "aether_wave": {
+    "name": "Aether Wave", "icon": "ico_theremin_evo", "color": "#b8ffe9", "pattern": "lock", "fixed_amount": true,
+    "desc": "Locks on to four targets at once and arcs onward from each.",
+    "from": ["theremin"], "needs_passive": "spotlight",
+    "base": {"damage": 24, "cooldown": 0.25, "amount": 4, "range": 250, "chains": 2}
+  },
+  "more_cowbell": {
+    "name": "More Cowbell", "icon": "ico_cowbell_evo", "color": "#ffc078", "pattern": "lob", "sprite": "shot_bell",
+    "desc": "Four bells per volley, and every blast throws out three more.",
+    "from": ["cowbell"], "needs_passive": "roadie",
+    "base": {"damage": 66, "cooldown": 1.5, "amount": 4, "radius": 76, "range": 220, "cluster": 3, "knockback": 90}
+  },
+  "rhythm_section": {
+    "name": "Rhythm Section", "icon": "ico_rhythm_section", "color": "#ff8fa3", "pattern": "ring",
+    "desc": "Union of Drums and Bass: huge shockwaves and walls of bass in one slot.",
+    "from": ["drums", "bass"], "layers": ["drums", "bass"],
+    "on_hit": {"stun": 0.3},
+    "base": {"damage": 34, "cooldown": 1.0, "amount": 2, "radius": 150, "knockback": 150},
+    "sub": [{"pattern": "wave", "color": "#8fa0ff", "sprite": "shot_slash", "fixed_amount": true,
+             "base": {"damage": 60, "cooldown": 2.0, "amount": 4, "radius": 50, "proj_speed": 140, "duration": 3.0, "knockback": 380}}]
+  },
+  "string_quartet": {
+    "name": "String Quartet", "icon": "ico_string_quartet", "color": "#ffc38a", "pattern": "homing", "sprite": "shot_slash",
+    "desc": "Union of Violin and Cello: seeking slashes and sweeping strokes all around.",
+    "from": ["violin", "cello"], "layers": ["violin", "cello"],
+    "base": {"damage": 30, "cooldown": 0.45, "amount": 5, "proj_speed": 330, "pierce": 4, "duration": 2.6, "turn": 9, "radius": 8},
+    "sub": [{"pattern": "slash", "color": "#e09f6b", "fixed_amount": true,
+             "base": {"damage": 55, "cooldown": 1.0, "amount": 4, "range": 150, "angle": 120, "knockback": 120}}]
+  }
+}

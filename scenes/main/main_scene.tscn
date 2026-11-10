@@ -1,40 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://x3wuaibe1kfe"]
+[gd_scene load_steps=2 format=3 uid="uid://x3wuaibe1kfe"]
 
-[ext_resource type="Texture2D" uid="uid://c0ywjcmuovdk3" path="res://assets/world/BG.png" id="1_ei2sf"]
-[ext_resource type="PackedScene" uid="uid://ct8a7w65uq014" path="res://scenes/enemy/enemy_spawner.tscn" id="1_ubvhi"]
-[ext_resource type="PackedScene" uid="uid://clux3klygbqmw" path="res://scenes/enemy/enemy.tscn" id="2_24sno"]
-[ext_resource type="PackedScene" uid="uid://cvvure83jd3oi" path="res://scenes/player/player.tscn" id="3_s7l2u"]
-[ext_resource type="PackedScene" uid="uid://btwim57o8xrcr" path="res://scenes/ui/in_game_ui.tscn" id="in_game_ui_tscn"]
-[ext_resource type="PackedScene" uid="uid://bkj5oue6aa54h" path="res://scenes/main/LevelUpMenu.tscn" id="LevelUpMenu_tscn"]
-[ext_resource type="Script" uid="uid://ct50ma43vkims" path="res://scripts/main/main_scene.gd" id="main_scene_gd"]
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1_main"]
 
-[node name="MainScene" type="Node2D"]
-script = ExtResource("main_scene_gd")
-
-[node name="Background" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(-2.38419e-07, -4.76837e-07)
-scale = Vector2(0.55428, 0.55428)
-texture = ExtResource("1_ei2sf")
-region_enabled = true
-region_rect = Rect2(5000, 5000, 5000, 5000)
-
-[node name="EnemySpawner" parent="." instance=ExtResource("1_ubvhi")]
-enemy_scene = ExtResource("2_24sno")
-spawn_distance = 300.0
-spawn_enabled = false
-
-[node name="Player" parent="." instance=ExtResource("3_s7l2u")]
-
-[node name="Camera" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="LevelUpMenu" parent="UILayer" instance=ExtResource("LevelUpMenu_tscn")]
-visible = true
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="inGameUI" parent="UILayer" instance=ExtResource("in_game_ui_tscn")]
+[node name="Main" type="Node"]
+script = ExtResource("1_main")

@@ -1,0 +1,11 @@
+{
+  "allegro": {"name": "Allegro", "icon": "ui_sheet", "desc": "Lively. Instruments play 8% faster and you move 10% faster.", "bonus": {"cooldown": -0.08, "move_speed": 0.1}},
+  "fortissimo": {"name": "Fortissimo", "icon": "ui_sheet", "desc": "Very loud. +25% damage, but +15% curse.", "bonus": {"might": 0.25, "curse": 0.15}},
+  "crescendo": {"name": "Crescendo", "icon": "ui_sheet", "desc": "Growing. +20% experience.", "bonus": {"growth": 0.2}},
+  "da_capo": {"name": "Da Capo", "icon": "ui_sheet", "desc": "From the top. +1 revival.", "bonus": {"revival": 1}},
+  "staccato": {"name": "Staccato", "icon": "ui_sheet", "desc": "Short and sharp. +30% projectile speed, -15% duration.", "bonus": {"speed": 0.3, "duration": -0.15}},
+  "legato": {"name": "Legato", "icon": "ui_sheet", "desc": "Smooth and connected. +30% duration, +10% area.", "bonus": {"duration": 0.3, "area": 0.1}},
+  "tutti": {"name": "Tutti", "icon": "ui_sheet", "desc": "Everyone together. +1 projectile, but instruments play 10% slower.", "bonus": {"amount": 1, "cooldown": 0.1}},
+  "coda": {"name": "Coda", "icon": "ui_sheet", "desc": "The closing section. +50% gold, +20% luck.", "bonus": {"greed": 0.5, "luck": 0.2}},
+  "ostinato": {"name": "Ostinato", "icon": "ui_sheet", "desc": "Stubbornly repeated. Start with a Metronome and an Encore.", "bonus": {}, "start_passives": ["metronome", "encore"]}
+}
